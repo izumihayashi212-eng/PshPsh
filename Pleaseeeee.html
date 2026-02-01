@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💘</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 60px 70px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      z-index: 10;
+      min-width: 420px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 35px;
+    }
+
+    button {
+      padding: 14px 30px;
+      font-size: 17px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      margin-right: 25px;
+    }
+
+    #no {
+      background-color: #ccc;
+      color: black;
+      position: absolute;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      top: -10px;
+      animation: fall 3.5s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .footer-text {
+      position: fixed;
+      bottom: 18px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      color: rgba(0,0,0,0.6);
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    .final-screen {
+      height: 100vh;
+      width: 100%;
+      background: #ff4d6d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    .final-screen img {
+      max-width: 320px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Hey Sugee 💕</h1>
+    <p>Will you be my Valentine?</p>
+
+    <button id="yes" onclick="yesClicked()">Yes 💖</button>
+    <button id="no" onmouseover="moveNo()">No 😏</button>
+  </div>
+
+  <div class="footer-text">No is a little shy 😈</div>
+
+  <script>
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      const x = Math.random() * (window.innerWidth - 140);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    function yesClicked() {
+      launchConfetti(220);
+
+      setTimeout(() => {
+        document.body.innerHTML = `
+          <div class="final-screen">
+            <img src="https://media.tenor.com/83GWEMra6XgAAAAM/blessed-friday-blessed-friday-morning.gif" alt="Valentine GIF">
+            <h1>YAYYYY 🥰🎉</h1>
+            <h2>Sugee is my Valentine 💘</h2>
+          </div>
+        `;
+        launchConfetti(300);
+      }, 1400);
+    }
+
+    function launchConfetti(count) {
+      const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4dabf7", "#c77dff", "#ffffff"];
+
+      for (let i = 0; i < count; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration =
+          (Math.random() * 2 + 2.5) + "s";
+        confetti.style.transform =
+          `rotate(${Math.random() * 720}deg)`;
+
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
