@@ -1,20 +1,4 @@
-<!DOCTYPEhtml>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Valentine 💘</title>
-  <style>
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    .card {
+.card {
       background: white;
       padding: 60px 70px;
       border-radius: 25px;
